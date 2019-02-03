@@ -17,6 +17,12 @@ Stack machines follow a model where, instruction codes involve pushing and poppi
 
 Register based machines use a finite number of registers to facilitate computation. This is generally very diffcult to capture within a virtual machine. Lua has done this though, however. 
 
+## Automata-based Machine
+
+This prototype uses a state map, to implement more of a FSA type of virtual machine. It uses a system such as `<set val>`, as an instruction to set a value, than takes in a series of state changing instructions to alter that value. Instructions also handle nested values.
+
+So an example is the expression `5 + (6 - 2)`, would be translated to something like
+
 
 ## Example
 
