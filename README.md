@@ -21,7 +21,21 @@ Register based machines use a finite number of registers to facilitate computati
 
 This prototype uses a state map, to implement more of a FSA type of virtual machine. It uses a system such as `<set val>`, as an instruction to set a value, than takes in a series of state changing instructions to alter that value. Instructions also handle nested values.
 
-So an example is the expression `5 + (6 - 2)`, would be translated to something like
+So an example is the expression `5 + (6 - 2)`, would be translated to something like:
+
+```
+set
+int  5 0 0 0 /*little endian 32bit*/
+plus
+set /* nested call, create new state frame*/
+    set
+    int 6 0 0 0
+    minus
+    int 2 0 0 0
+    stop /*stop the minus op*/
+stop /*stop the plus op*/
+stop /*stop the automata */
+```
 
 
 ## Example
